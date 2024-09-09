@@ -6,7 +6,10 @@ import {useAdd} from '../hooks/useAdd.ts'
 import {API_URL} from '../utils/mockApi.ts'
 import {INITIAL_PRODUCT} from '../data/mockData.ts'
 
-const AddProduct = () => {
+interface AddProductButtonPropsInterface {
+    reload: () => void
+}
+const AddProduct = ({reload}: AddProductButtonPropsInterface)  => {
     const [showModal, setShowModal] = useState(false)
     const {add, error} = useAdd(API_URL)
 
@@ -18,6 +21,7 @@ const AddProduct = () => {
             const newProduct = await add(product)
             console.log(newProduct)
             handleClose()
+            reload()
         } catch (error) {
             console.log(error)
         }
@@ -30,10 +34,10 @@ const AddProduct = () => {
             </button>
 
             {showModal && (
-                <Modal onClose={handleClose}>
+                <Modal onClose={handleClose} >
                     <h2 className="modal__title">Add a new product</h2>
                     {error && <p className="error">{error}</p>}
-                    <ProductForm onSubmit={handleSubmit} product={INITIAL_PRODUCT}/>
+                    <ProductForm  onSubmit={handleSubmit} product={INITIAL_PRODUCT} />
                 </Modal>
             )}
         </>

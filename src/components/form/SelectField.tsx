@@ -15,7 +15,7 @@ const SelectField = ({ id, value, onChange, options, required = true }: SelectFi
 
     return (
         <div className="form-group">
-            <label className="form-label" htmlFor="category">
+            <label className="form-label" htmlFor={id}>
                 {id.charAt(0).toUpperCase() + id.slice(1)}:
             </label>
             <select className="form-control" id={id} value={value} onChange={onChange} required={required}>

@@ -63,7 +63,7 @@ const Products = () => {
             {!isLoading && !error && (
                 <div className="content">
                     <div className="buttons-group">
-                        {isLogged && <AddProduct/>}
+                            {isLogged && <AddProduct reload={() => setReload(Date.now( ).toString( ))}/>}
                         <div className="pagination">
                             <button
                                 className="pagination__btn"
